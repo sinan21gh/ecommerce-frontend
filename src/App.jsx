@@ -8,6 +8,8 @@ import Register from "./pages/Register.jsx";
 import Verify from "./pages/Verify.jsx"
 import Login from "./pages/Login.jsx";
 import Products from "./pages/Products.jsx"
+import ProductDetails from "./pages/ProductDetails.jsx";
+import Cart from "./pages/Cart.jsx";
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
                 <Route path="/verifypage" element={<Verify/>}></Route>
                 <Route path="/login" element={<Login/>}></Route>
                 <Route path="/products" element={<Products/>}></Route>
+                <Route path="/products/:id" element={<ProductDetails/>}></Route>
+                <Route path="/cart" element={<Cart/>}></Route>
 
             </Routes>
         </BrowserRouter>

@@ -1,14 +1,16 @@
 import api from "../api/axiosConfig.js";
 import { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
 function Products() {
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
     const [name, setName] = useState("");
-    const [minprice, setMinprice] = useState(0);
-    const [maxprice, setMaxprice] = useState(1000000000);
+    const [minprice, setMinprice] = useState(null);
+    const [maxprice, setMaxprice] = useState(null);
 
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -32,13 +34,17 @@ function Products() {
         fetchData();
     }, [page, name, minprice, maxprice]);
 
+    const goToProduct = (product) => {
+        navigate(`/products/${product.id}`);
+    }
+
 
 
     return (
         <>
             <div>
                 {products.map(product => (
-                    <div className="card" key={product.id}>
+                    <div className="card" key={product.id} onClick={() => goToProduct(product)}>
                         <h3>{product.name}</h3>
                         <p>£{product.price}</p>
                     </div>
@@ -59,19 +65,19 @@ function Products() {
             <input
                 value={name}
                 type="text"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {setPage(0); setName(e.target.value)}}
                 placeholder="name"
             />
             <input
                 value={minprice}
                 type="number"
-                onChange={(e) => setMinprice(e.target.value)}
+                onChange={(e) =>{setPage(0); setMinprice(e.target.value)}}
                 placeholder="min price"
             />
             <input
                 value={maxprice}
                 type="number"
-                onChange={(e) => setMaxprice(e.target.value)}
+                onChange={(e) => {setPage(0); setMaxprice(e.target.value)}}
                 placeholder="max price"
             />
         </>
