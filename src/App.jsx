@@ -10,6 +10,8 @@ import Login from "./pages/Login.jsx";
 import Products from "./pages/Products.jsx"
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Cart from "./pages/Cart.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import MyOrders from "./pages/MyOrders.jsx";
 
 function App() {
 
@@ -23,7 +25,8 @@ function App() {
                 <Route path="/products" element={<Products/>}></Route>
                 <Route path="/products/:id" element={<ProductDetails/>}></Route>
                 <Route path="/cart" element={<Cart/>}></Route>
-
+                <Route path="/checkout" element={<Checkout/>}></Route>
+                <Route path="/myorders" element={<MyOrders/>}></Route>
             </Routes>
         </BrowserRouter>
     </>
