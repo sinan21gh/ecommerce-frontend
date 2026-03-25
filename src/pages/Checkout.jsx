@@ -35,7 +35,6 @@ function Checkout(){
             <div>
                 <p>Total price: £{cart?.totalPrice}</p>
                 <button disabled={!cart || cart.items?.length === 0} onClick={placeOrder}>Place order</button>
-                <button  onClick={placeOrder}>Place order</button>
             </div>
         </>
     )

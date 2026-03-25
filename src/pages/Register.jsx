@@ -3,6 +3,7 @@ import axios from "axios";
 import api from "../api/axiosConfig.js";
 import { useNavigate } from "react-router-dom";
 import Verify from "./Verify.jsx";
+import "../Register.css"
 
 function Register(){
     const [username, setUsername] = useState("");
@@ -46,48 +47,48 @@ function Register(){
 
 
     return (
-       <>
-           <div className="body1">
-                <button style={{marginLeft:"100px", marginTop:"20px", color:"white", background:"none", border:"none", cursor:"pointer", fontSize:"2em"} }
-                         title="About Us">E-Commerce</button>
+        <div className="auth-page">
+            <div className="auth-card">
+                <h1 className="auth-title">Create Account</h1>
 
-                <div className="forms">
-                    <h1 style={{color:"black"}}>Register</h1>
-                    <p style={{color:"black"}}>{message}</p>
-                    <form onSubmit={submit}>
-                        <input
-                            className="i1"
-                            type="text"
-                            placeholder="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        /><br/>
-                        <input
-                            className="i2"
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        /><br/>
-                        <input
-                            className="i3"
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        /><br/>
-                        <button type="submit">Register</button>
-                    </form>
-                    <p style={{color:"black"}}>{message}</p>
+                {message && <p className="auth-message">{message}</p>}
+
+                <form onSubmit={submit} className="auth-form">
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+
+                    <button type="submit" className="primary-btn">
+                        Register
+                    </button>
+                </form>
+
+                <div className="auth-footer">
+                    <p>Already have an account?</p>
+                    <button className="link-btn" onClick={GoToLogin}>Go to Login</button>
                 </div>
-                <p className="loginmes">Already Have An Account?</p>
-                <button className="f1" onClick={GoToLogin}>Go To Login</button>
-
-           </div>
-       </>
-    )
+            </div>
+        </div>
+    );
 }
 export default Register;

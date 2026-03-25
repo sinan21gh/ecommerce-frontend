@@ -12,6 +12,9 @@ import ProductDetails from "./pages/ProductDetails.jsx";
 import Cart from "./pages/Cart.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import MyOrders from "./pages/MyOrders.jsx";
+import AdminOrders from "./pages/AdminOrders.jsx";
+import AdminProducts from "./pages/AdminProducts.jsx";
+import Profile from "./pages/Profile.jsx";
 
 function App() {
 
@@ -27,6 +30,9 @@ function App() {
                 <Route path="/cart" element={<Cart/>}></Route>
                 <Route path="/checkout" element={<Checkout/>}></Route>
                 <Route path="/myorders" element={<MyOrders/>}></Route>
+                <Route path="/adminorders" element={<AdminOrders/>}></Route>
+                <Route path="/adminproducts" element={<AdminProducts/>}></Route>
+                <Route path="/profile" element={<Profile/>}></Route>
             </Routes>
         </BrowserRouter>
     </>

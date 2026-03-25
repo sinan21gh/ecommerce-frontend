@@ -1,7 +1,8 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import api from "../api/axiosConfig.js";
-
+import Dropdown from "../context/Dropdown.jsx";
+import "../ProductDetails.css";
 function ProductDetails(){
     const param = useParams();
     const id = param.id;
@@ -36,28 +37,49 @@ function ProductDetails(){
     }
     return (
         <>
-            <h1>{item?.id}</h1>
-            <h1>{item?.name}</h1>
-            <h1>{item?.description}</h1>
-            <h1>{item?.price}</h1>
-            <input value={quantity}
-                   onChange={(e) => setQuantity(e.target.value)}
-                   type="number"
-                   min="1"
-                   required
-            />
-            <button onClick={addToCart}>Add to cart</button>
-            <h1>{cart?.totalPrice}</h1>
-            <div>
-                {cart?.items?.map((ite) => (
-                    <div key={ite?.id}>
-                        <p>{ite?.name}</p>
-                        <p>{ite?.quantity}</p>
+            <Dropdown />
+
+            <div className="product-page">
+                <div className="product-card">
+                    <div className="product-info">
+                        <h1 className="product-name">{item?.name}</h1>
+                        <p className="product-description">{item?.description}</p>
+                        <p className="product-price">£{item?.price}</p>
+
+                        <div className="product-actions">
+                            <input
+                                type="number"
+                                min="1"
+                                value={quantity}
+                                onChange={(e) => setQuantity(e.target.value)}
+                                className="quantity-input"
+                            />
+                            <button className="add-to-cart-btn" onClick={addToCart}>
+                                Add to Cart
+                            </button>
+                        </div>
                     </div>
-                ))}
+                </div>
+
+                {cart && (
+                    <div className="cart-preview">
+                        <h3>Cart Summary</h3>
+                        <p className="cart-total">Total: £{cart.totalPrice}</p>
+
+                        {cart.items.map((ite) => (
+                            <div className="cart-item" key={ite.id}>
+                                <span>{ite.name}</span>
+                                <span>x{ite.quantity}</span>
+                            </div>
+                        ))}
+
+                        <button className="go-to-cart-btn" onClick={goToCart}>
+                            View Cart
+                        </button>
+                    </div>
+                )}
             </div>
-            <button onClick={goToCart}>My cart</button>
         </>
-    )
+    );
 }
 export default ProductDetails;

@@ -1,6 +1,6 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import api from "../api/axiosConfig.js";
-
+import "../Login.css";
 function Verify(){
 
     const resend = async () => {
@@ -10,11 +10,16 @@ function Verify(){
     const location = useLocation();
     const email = location.state?.email;
     return (
-        <>
-            <h1>verify your email {email}</h1>
-            <h4>The email will expire in 1 hour</h4>
-            <button onClick={resend}>Resend verification</button>
-        </>
-    )
+        <div className="auth-page">
+            <div className="auth-card">
+                <h1 className="auth-title">Verify Your Email</h1>
+                <p className="auth-message">We’ve sent a verification link to:<br />
+                <b>{email}</b></p>
+                <p className="auth-subtext">The verification link will expire in 1 hour.</p>
+                <button onClick={resend} className="primary-btn">Resend Verification Email</button>
+            </div>
+      </div>
+    );
+
 }
 export default Verify;
